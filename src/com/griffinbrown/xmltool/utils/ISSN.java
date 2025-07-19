@@ -24,7 +24,9 @@
 
 package com.griffinbrown.xmltool.utils;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.probatron.NamespacePrefixMappings;
 
 /*
  * The procedure for calculating the check digit, which may be carried out automatically in a
@@ -44,7 +46,7 @@ import org.apache.log4j.Logger;
 public class ISSN
 {
     private String issn;
-    private static Logger logger = Logger.getLogger( ISSN.class );
+    static Logger logger = LogManager.getLogger( ISSN.class.getName());
 
 
     public ISSN( String issn ) throws MalformedISSNException

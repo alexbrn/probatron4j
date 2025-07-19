@@ -24,12 +24,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.helpers.AttributesImpl;
 
 public class NamespacePrefixMappings
 {
-    static Logger logger = Logger.getLogger( NamespacePrefixMappings.class );
+    static Logger logger = LogManager.getLogger( NamespacePrefixMappings.class.getName());
 
     private HashMap<String, String> nsMap = new HashMap<String, String>();
     private HashMap<String, String> prefixMap = new HashMap<String, String>();

@@ -29,7 +29,7 @@ import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.value.SequenceType;
 import net.sf.saxon.value.StringValue;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.probatron.Utils;
 
 import com.griffinbrown.xmltool.utils.RomanNumeralParser;
@@ -37,7 +37,7 @@ import com.griffinbrown.xmltool.utils.RomanNumeralParser;
 @SuppressWarnings("serial")
 public class RomanNumeralToDecimal extends ExtensionFunctionDefinition
 {
-    static Logger logger = Logger.getLogger( RomanNumeralToDecimal.class );
+    //static Logger logger = Logger.getLogger( RomanNumeralToDecimal.class );
 
     private static StructuredQName funcName = new StructuredQName( "pr",
             Utils.PROBATRON_FUNCTION_NAME, "roman-numeral-to-decimal" );

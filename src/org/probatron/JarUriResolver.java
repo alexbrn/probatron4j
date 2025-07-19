@@ -20,18 +20,18 @@
 
 package org.probatron;
 
-import java.io.InputStream;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.URIResolver;
 import javax.xml.transform.stream.StreamSource;
-
-import org.apache.log4j.Logger;
+import java.io.InputStream;
 
 public class JarUriResolver implements URIResolver
 {
-    static Logger logger = Logger.getLogger( JarUriResolver.class );
+    static Logger logger = LogManager.getRootLogger();
 
     public Source resolve( String href, String base ) throws TransformerException
     {

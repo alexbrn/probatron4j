@@ -22,7 +22,8 @@ package org.probatron;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -38,7 +39,7 @@ import org.xml.sax.helpers.XMLReaderFactory;
 public class IncludingFilter extends XMLFilterImpl
 {
 
-    static Logger logger = Logger.getLogger( IncludingFilter.class );
+    static Logger logger = LogManager.getLogger( IncludingFilter.class.getName());
     private boolean outermost;
     private URL base;
     boolean foundAbstractPatterns;

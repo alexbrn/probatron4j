@@ -20,7 +20,8 @@
 
 package org.probatron;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
@@ -30,7 +31,7 @@ import org.xml.sax.ext.LexicalHandler;
 public class LocationAnalyzer implements ContentHandler, LexicalHandler
 {
 
-    static Logger logger = Logger.getLogger( LocationAnalyzer.class );
+    static Logger logger = LogManager.getLogger( Utils.class.getName());
     ValidationReport rpt;
     String rollingPath;
     int depth;

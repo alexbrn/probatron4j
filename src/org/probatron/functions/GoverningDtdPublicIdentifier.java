@@ -31,14 +31,16 @@ import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.value.SequenceType;
 import net.sf.saxon.value.StringValue;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.probatron.NamespacePrefixMappings;
 import org.probatron.Session;
 import org.probatron.Utils;
 
 @SuppressWarnings("serial")
 public class GoverningDtdPublicIdentifier extends ExtensionFunctionDefinition
 {
-    static Logger logger = Logger.getLogger( GoverningDtdPublicIdentifier.class );
+    static Logger logger = LogManager.getLogger( GoverningDtdPublicIdentifier.class.getName());
 
     private static StructuredQName funcName = new StructuredQName( "pr",
             Utils.PROBATRON_FUNCTION_NAME, "governing-dtd-public-identifier" );

@@ -23,7 +23,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
@@ -31,7 +32,7 @@ import org.xml.sax.helpers.XMLFilterImpl;
 
 public class EnrichmentFilter extends XMLFilterImpl
 {
-    static Logger logger = Logger.getLogger( EnrichmentFilter.class );
+    static Logger logger = LogManager.getLogger( EnrichmentFilter.class.getName());
     private ValidationReport rpt;
     private Stack< String > ancestors = new Stack< String >();
     private Session session;

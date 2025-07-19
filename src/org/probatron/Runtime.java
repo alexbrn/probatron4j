@@ -23,7 +23,8 @@ import java.util.HashMap;
 
 import net.sf.saxon.s9api.Processor;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.probatron.functions.FileExists;
 import org.probatron.functions.GoverningDtdPublicIdentifier;
 import org.probatron.functions.GoverningDtdSystemIdentifier;
@@ -36,7 +37,7 @@ import org.probatron.functions.UrlMimeType;
 
 public class Runtime
 {
-    static Logger logger = Logger.getLogger( Runtime.class );
+    static Logger logger = LogManager.getLogger( Runtime.class.getName());
 
     private static Processor processor;
     private static HashMap< String, Session > sessionMap = new HashMap< String, Session >();

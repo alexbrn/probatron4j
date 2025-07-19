@@ -29,10 +29,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import org.apache.logging.log4j.LogManager;
 
 import javax.xml.transform.TransformerFactory;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 public class Utils
 {
@@ -46,7 +47,7 @@ public class Utils
     final public static int CLOSE_IN = 0x0001;
     final public static int CLOSE_OUT = 0x0010;
 
-    static Logger logger = Logger.getLogger( Utils.class );
+    static Logger logger = LogManager.getLogger( Utils.class.getName());
 
 
     /**

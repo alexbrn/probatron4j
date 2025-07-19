@@ -43,7 +43,8 @@ import net.sf.saxon.s9api.XsltCompiler;
 import net.sf.saxon.s9api.XsltExecutable;
 import net.sf.saxon.s9api.XsltTransformer;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -56,7 +57,7 @@ import com.megginson.sax.XMLWriter;
  */
 public class SchematronSchema
 {
-    static Logger logger = Logger.getLogger( SchematronSchema.class );
+    static Logger logger = LogManager.getLogger( SchematronSchema.class.getName());
 
     private byte[] schemaAsBytes;
     private URL schemaUrl;

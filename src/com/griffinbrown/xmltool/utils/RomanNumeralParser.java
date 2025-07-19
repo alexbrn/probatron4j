@@ -19,11 +19,13 @@
 
 package com.griffinbrown.xmltool.utils;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.probatron.NamespacePrefixMappings;
 
 public class RomanNumeralParser
 {
-    private static Logger logger = Logger.getLogger( RomanNumeralParser.class );
+    static Logger logger = LogManager.getLogger( RomanNumeralParser.class.getName());
 
     private static final char UNI_ONE_UPPER = ( char )0x2160;
     private static final char UNI_TWO_UPPER = ( char )0x2161;

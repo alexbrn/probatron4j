@@ -34,14 +34,16 @@ import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.value.BooleanValue;
 import net.sf.saxon.value.SequenceType;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.probatron.NamespacePrefixMappings;
 import org.probatron.Session;
 import org.probatron.Utils;
 
 @SuppressWarnings("serial")
 public class FileExists extends ExtensionFunctionDefinition
 {
-    static Logger logger = Logger.getLogger( FileExists.class );
+    static Logger logger = LogManager.getLogger( ExtensionFunctionDefinition.class.getName());
     private static StructuredQName funcName = new StructuredQName( "pr",
             Utils.PROBATRON_FUNCTION_NAME, "file-exists" );
 

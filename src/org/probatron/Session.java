@@ -28,14 +28,15 @@ import java.util.UUID;
 
 import net.sf.saxon.om.SequenceIterator;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
 public class Session
 {
-    static Logger logger = Logger.getLogger( Session.class );
+    static Logger logger = LogManager.getLogger( Session.class.getName());
 
     private boolean physicalLocators = true;
     private String phase;

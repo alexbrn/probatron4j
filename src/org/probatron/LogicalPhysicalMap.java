@@ -22,13 +22,14 @@ package org.probatron;
 
 import java.util.HashMap;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.Locator;
 
 @SuppressWarnings("serial")
 public class LogicalPhysicalMap extends HashMap<String, PhysicalLocation>
 {
-    static Logger logger = Logger.getLogger( LogicalPhysicalMap.class );
+    static Logger logger = LogManager.getLogger( Utils.class.getName());
 
 
     void handleMapping( TreeContext tc, Locator loc )

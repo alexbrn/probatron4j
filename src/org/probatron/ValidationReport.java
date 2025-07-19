@@ -26,7 +26,8 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -36,7 +37,7 @@ import com.megginson.sax.XMLWriter;
 
 public class ValidationReport
 {
-    static Logger logger = Logger.getLogger( ValidationReport.class );
+    static Logger logger = LogManager.getLogger( Utils.class.getName());
 
     private byte[] reportBytes;
     LogicalPhysicalMap locMap = new LogicalPhysicalMap();

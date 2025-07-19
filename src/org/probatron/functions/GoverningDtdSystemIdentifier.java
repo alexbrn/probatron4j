@@ -31,14 +31,14 @@ import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.value.SequenceType;
 import net.sf.saxon.value.StringValue;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.probatron.Session;
 import org.probatron.Utils;
 
 @SuppressWarnings("serial")
 public class GoverningDtdSystemIdentifier extends ExtensionFunctionDefinition
 {
-    static Logger logger = Logger.getLogger( GoverningDtdSystemIdentifier.class );
+    //static Logger logger = Logger.getLogger( GoverningDtdSystemIdentifier.class );
 
     private static StructuredQName funcName = new StructuredQName( "pr",
             Utils.PROBATRON_FUNCTION_NAME, "governing-dtd-system-identifier" );

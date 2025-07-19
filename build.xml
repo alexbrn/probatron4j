@@ -26,12 +26,18 @@
   <description>Probatron4J build</description>
 
   <!-- set global properties for this build -->
-  <property name="version" value="0.8.0"/>
+  <property name="version" value="0.9.0"/>
   <property name="src" location="src"/>
   <property name="build" location="build"/>
   <property name="dist" location="dist"/>
   <property name="etc" location="etc"/>
   <property name="lib" location="etc/lib"/>
+
+  <path id="all.dependencies">
+   <!-- <pathelement location="${lib}/log4j-1.2-api-2.25.0.jar" /> -->
+    <pathelement location="${lib}/log4j-api-2.25.0.jar" />
+    <pathelement location="${lib}/saxon9he.jar"/>
+  </path>
 
   <target name="init">
     <!-- Create the time stamp -->
@@ -43,17 +49,16 @@
   <target name="compile" depends="init" description="compile the source">
     <!-- Compile the java code from ${src} into ${build} -->
     <javac source="9" srcdir="${src}" destdir="${build}">
-      <classpath>
-        <pathelement location="${lib}/log4j-1.2.15.jar"/>
-      	<pathelement location="${lib}/saxon9he.jar"/>
-      </classpath>
+      <classpath refid="all.dependencies"/>
     </javac>
   </target>
 
   <target name="jar" depends="compile" description="generate an all-in-one executable JAR">
     <!-- Create the distribution directory -->
     <mkdir dir="${dist}/temp"/>
-    <unjar src="${lib}/log4j-1.2.15.jar" dest="${dist}/temp"/>
+    <!-- <unjar src="${lib}/log4j-1.2-api-2.25.0.jar" dest="${dist}/temp"/> -->
+    <unjar src="${lib}/log4j-api-2.25.0.jar" dest="${dist}/temp"/>
+    <unjar src="${lib}/log4j-core-2.25.0.jar" dest="${dist}/temp"/>
     <unjar src="${lib}/saxon9he.jar" dest="${dist}/temp"/>
     <copy todir="${dist}/temp">
       <fileset dir="${build}"/>
@@ -61,6 +66,9 @@
     <delete dir="${dist}/temp/META-INF"/>
     <copy todir="${dist}/temp/resource/stylesheet">
       <fileset dir="etc/stylesheet"/>
+    </copy>
+    <copy todir="${dist}/temp">
+      <fileset dir="etc/misc"/>
     </copy>
 
     <!-- Make the jar  -->
@@ -73,7 +81,7 @@
         <attribute name="Main-Class" value="org.probatron.Driver"/>
       </manifest>
     </jar>
-    <delete dir="${dist}/temp"/>
+  <delete dir="${dist}/temp"/>
   </target>
 
   <target name="distro" depends="jar" description="generates distro files">

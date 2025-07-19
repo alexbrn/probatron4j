@@ -19,11 +19,12 @@
 
 package org.probatron;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.helpers.XMLFilterImpl;
 
 public class SvrlMergeFilter extends XMLFilterImpl
 {
-    static Logger logger = Logger.getLogger( SvrlMergeFilter.class );
+    //static Logger logger = Logger.getLogger( SvrlMergeFilter.class );
 
 }
