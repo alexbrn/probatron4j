@@ -10,5 +10,6 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="log4j-api-2.25.0" level="project" />
     <orderEntry type="library" name="log4j-core-2.25.0" level="project" />
+    <orderEntry type="library" name="saxon-he-12.8" level="project" />
   </component>
 </module>

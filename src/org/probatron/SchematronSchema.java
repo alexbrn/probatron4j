@@ -228,7 +228,7 @@ public class SchematronSchema
                 .toString() ) );
         transformer.setSource( new StreamSource( candidateStream, schemaUrl.toExternalForm() ) );
 
-        Serializer ser = new Serializer();
+        Serializer ser = Runtime.getSaxonProcessor().newSerializer();
         ser.setOutputStream( baos );
         transformer.setDestination( ser );
 
@@ -253,7 +253,7 @@ public class SchematronSchema
 
         transformer.setSource( new StreamSource( new ByteArrayInputStream( interim ) ) );
 
-        Serializer ser = new Serializer();
+        Serializer ser = Runtime.getSaxonProcessor().newSerializer();
         ser.setOutputStream( baos );
         transformer.setDestination( ser );
 

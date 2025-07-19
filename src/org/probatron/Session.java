@@ -26,8 +26,11 @@ import java.net.URI;
 import java.net.URL;
 import java.util.UUID;
 
+import net.sf.saxon.Controller;
+import net.sf.saxon.expr.XPathContext;
 import net.sf.saxon.om.SequenceIterator;
 
+import net.sf.saxon.om.StructuredQName;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
@@ -49,6 +52,18 @@ public class Session
 
     private ValidationContext validationContext;
 
+    // Helper
+    public static Session sessionFromContext(XPathContext context)
+    {
+        Controller t = context.getController();
+
+        StructuredQName sqn = new StructuredQName("", "", "_uuid_");
+
+        String sessionId = t.getParameter(sqn).toString();
+        Session sess = org.probatron.Runtime.getSession(sessionId);
+
+        return sess;
+    }
 
     public Session()
     {

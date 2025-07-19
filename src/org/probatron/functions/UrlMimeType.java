@@ -23,11 +23,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import net.sf.saxon.expr.XPathContext;
-import net.sf.saxon.functions.ExtensionFunctionCall;
-import net.sf.saxon.functions.ExtensionFunctionDefinition;
+import net.sf.saxon.lib.*;
 import net.sf.saxon.om.NodeInfo;
+import net.sf.saxon.om.Sequence;
 import net.sf.saxon.om.SequenceIterator;
-import net.sf.saxon.om.SingletonIterator;
+import net.sf.saxon.tree.iter.SingletonIterator;
 import net.sf.saxon.om.StructuredQName;
 import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.value.SequenceType;
@@ -87,15 +87,14 @@ public class UrlMimeType extends ExtensionFunctionDefinition
     private static class UrlMimeTypeCall extends ExtensionFunctionCall
     {
 
-        public SequenceIterator call( SequenceIterator[] arguments, XPathContext context )
+        public Sequence call(XPathContext context , Sequence[] arguments)
                 throws XPathException
         {
-            SequenceIterator iter = arguments[ 0 ];
-            String url = iter.next().getStringValue();
+          /*  String url = arguments[0].toString();
             String baseUri = null;
 
             NodeInfo item = ( NodeInfo )iter.next();
-            if( item != null )
+            if( arguments.length ==2 )
             {
                 baseUri = item.getBaseURI();
             }
@@ -117,8 +116,8 @@ public class UrlMimeType extends ExtensionFunctionDefinition
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
-            return SingletonIterator.makeIterator( new StringValue( mime ) );
+*/
+            return new StringValue( "false" );
 
         }
 

@@ -20,10 +20,10 @@
 package org.probatron.functions;
 
 import net.sf.saxon.expr.XPathContext;
-import net.sf.saxon.functions.ExtensionFunctionCall;
-import net.sf.saxon.functions.ExtensionFunctionDefinition;
+import net.sf.saxon.lib.*;
+import net.sf.saxon.om.Sequence;
 import net.sf.saxon.om.SequenceIterator;
-import net.sf.saxon.om.SingletonIterator;
+import net.sf.saxon.tree.iter.SingletonIterator;
 import net.sf.saxon.om.StructuredQName;
 import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.value.BooleanValue;
@@ -76,10 +76,10 @@ public class IsValidIsbn13 extends ExtensionFunctionDefinition
         return new IsValidIsbn13Call();
     }
 
-    private static class IsValidIsbn13Call extends ExtensionFunctionCall
+    private static class IsValidIsbn13Call extends  ExtensionFunctionCall
     {
 
-        public SequenceIterator call( SequenceIterator[] arguments, XPathContext context )
+        public Sequence call(net.sf.saxon.expr.XPathContext context, net.sf.saxon.om.Sequence[] arguments)
                 throws XPathException
         {
             boolean value = true;
@@ -87,8 +87,9 @@ public class IsValidIsbn13 extends ExtensionFunctionDefinition
             ISBN13 isbn = null;
             try
             {
-                SequenceIterator iter = arguments[ 0 ];
-                String candidate = iter.next().getStringValue();
+                //SequenceIterator iter = arguments.head();
+                //String candidate = iter.next().getStringValue();
+                String candidate = arguments[ 0 ].toString();
 
                 isbn = new ISBN13( candidate );
             }
@@ -102,8 +103,10 @@ public class IsValidIsbn13 extends ExtensionFunctionDefinition
                 value = false;
             }
 
-            return SingletonIterator.makeIterator( value ? BooleanValue.TRUE
-                    : BooleanValue.FALSE );
+            return value ? BooleanValue.TRUE : BooleanValue.FALSE ;
+
+            //return SingletonIterator.makeIterator( value ? BooleanValue.TRUE
+              //      : BooleanValue.FALSE );
         }
 
     }

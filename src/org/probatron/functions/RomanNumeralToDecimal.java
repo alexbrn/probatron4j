@@ -20,10 +20,10 @@
 package org.probatron.functions;
 
 import net.sf.saxon.expr.XPathContext;
-import net.sf.saxon.functions.ExtensionFunctionCall;
-import net.sf.saxon.functions.ExtensionFunctionDefinition;
+import net.sf.saxon.lib.*;
+import net.sf.saxon.om.Sequence;
 import net.sf.saxon.om.SequenceIterator;
-import net.sf.saxon.om.SingletonIterator;
+import net.sf.saxon.tree.iter.SingletonIterator;
 import net.sf.saxon.om.StructuredQName;
 import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.value.SequenceType;
@@ -81,17 +81,16 @@ public class RomanNumeralToDecimal extends ExtensionFunctionDefinition
     private static class RomanNumeralToDecimalCall extends ExtensionFunctionCall
     {
 
-        public SequenceIterator call( SequenceIterator[] arguments, XPathContext context )
+        public Sequence call( XPathContext context, Sequence[] arguments )
                 throws XPathException
         {
-            SequenceIterator iter = arguments[ 0 ];
-            String roman = iter.next().getStringValue();
+            String roman = arguments[ 0 ].toString();
 
             RomanNumeralParser rp = new com.griffinbrown.xmltool.utils.RomanNumeralParser(
                     false );
             String s = ( String )rp.parse( roman );
 
-            return SingletonIterator.makeIterator( new StringValue( s ) );
+            return new StringValue( s );
 
         }
     }

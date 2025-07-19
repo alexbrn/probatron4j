@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2"
+    xmlns="http://purl.oclc.org/dsdl/schematron">
+    <pattern>
+	    <rule context="/*">
+            <report test="local-name(.) = 'purchaseOrder'">PASS</report>
+        </rule>
+    </pattern>
+</schema>

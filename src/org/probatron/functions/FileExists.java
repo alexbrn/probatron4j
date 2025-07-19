@@ -24,11 +24,12 @@ import java.net.URI;
 
 import javax.xml.transform.Transformer;
 
+import net.sf.saxon.Controller;
 import net.sf.saxon.expr.XPathContext;
-import net.sf.saxon.functions.ExtensionFunctionCall;
-import net.sf.saxon.functions.ExtensionFunctionDefinition;
+import net.sf.saxon.lib.*;
+import net.sf.saxon.om.Sequence;
 import net.sf.saxon.om.SequenceIterator;
-import net.sf.saxon.om.SingletonIterator;
+import net.sf.saxon.tree.iter.SingletonIterator;
 import net.sf.saxon.om.StructuredQName;
 import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.value.BooleanValue;
@@ -86,12 +87,15 @@ public class FileExists extends ExtensionFunctionDefinition
     private static class FileExistsCall extends ExtensionFunctionCall
     {
 
-        public SequenceIterator call( SequenceIterator[] arguments, XPathContext context )
+        public Sequence call(XPathContext context , Sequence[] arguments )
                 throws XPathException
         {
             // Get the Session
-            Transformer t = ( Transformer )context.getController();
-            String sessionId = t.getParameter( "_uuid_" ).toString();
+            Controller t = context.getController();
+
+            StructuredQName sqn = new StructuredQName( "", "", "_uuid_");
+
+            String sessionId = t.getParameter( sqn).toString();
             Session session = org.probatron.Runtime.getSession( sessionId );
 
             boolean ret = false;
@@ -100,8 +104,7 @@ public class FileExists extends ExtensionFunctionDefinition
             // context
             {
 
-                SequenceIterator iter = arguments[ 0 ];
-                String fileNameToTest = iter.next().getStringValue();
+                String fileNameToTest  = arguments[0].toString();
 
                 URI baseUri = session.getCandidateAsUri().normalize();
                 File candidateFile = new File( baseUri );
@@ -110,8 +113,8 @@ public class FileExists extends ExtensionFunctionDefinition
                 ret = toTest.exists();
 
             }
-            return SingletonIterator
-                    .makeIterator( ret ? BooleanValue.TRUE : BooleanValue.FALSE );
+
+            return ret ? BooleanValue.TRUE : BooleanValue.FALSE ;
 
         }
     }

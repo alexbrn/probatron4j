@@ -20,14 +20,14 @@
 package org.probatron.functions;
 
 import net.sf.saxon.expr.XPathContext;
-import net.sf.saxon.functions.ExtensionFunctionCall;
-import net.sf.saxon.functions.ExtensionFunctionDefinition;
+import net.sf.saxon.lib.*;
 import net.sf.saxon.om.SequenceIterator;
-import net.sf.saxon.om.SingletonIterator;
+import net.sf.saxon.tree.iter.SingletonIterator;
 import net.sf.saxon.om.StructuredQName;
 import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.value.BooleanValue;
 import net.sf.saxon.value.SequenceType;
+import net.sf.saxon.om.Sequence;
 
 import org.probatron.Utils;
 
@@ -79,7 +79,7 @@ public class IsValidIssn extends ExtensionFunctionDefinition
     private static class IsValidIssnCall extends ExtensionFunctionCall
     {
 
-        public SequenceIterator call( SequenceIterator[] arguments, XPathContext context )
+        public Sequence call( XPathContext context, Sequence[] arguments )
                 throws XPathException
         {
             boolean value = true;
@@ -87,8 +87,8 @@ public class IsValidIssn extends ExtensionFunctionDefinition
             ISSN issn = null;
             try
             {
-                SequenceIterator iter = arguments[ 0 ];
-                String candidate = iter.next().getStringValue();
+                //SequenceIterator iter = arguments[ 0 ];
+                String candidate = arguments[ 0 ].toString();
 
                 issn = new ISSN( candidate );
             }
@@ -102,8 +102,7 @@ public class IsValidIssn extends ExtensionFunctionDefinition
                 value = false;
             }
 
-            return SingletonIterator.makeIterator( value ? BooleanValue.TRUE
-                    : BooleanValue.FALSE );
+            return value ? BooleanValue.TRUE : BooleanValue.FALSE ;
         }
 
     }

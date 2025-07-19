@@ -22,10 +22,10 @@ package org.probatron.functions;
 import javax.xml.transform.Transformer;
 
 import net.sf.saxon.expr.XPathContext;
-import net.sf.saxon.functions.ExtensionFunctionCall;
-import net.sf.saxon.functions.ExtensionFunctionDefinition;
+import net.sf.saxon.lib.*;
+import net.sf.saxon.om.Sequence;
 import net.sf.saxon.om.SequenceIterator;
-import net.sf.saxon.om.SingletonIterator;
+import net.sf.saxon.tree.iter.SingletonIterator;
 import net.sf.saxon.om.StructuredQName;
 import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.value.SequenceType;
@@ -84,18 +84,14 @@ public class GoverningDtdPublicIdentifier extends ExtensionFunctionDefinition
     private static class GoverningDtdPublicIdentifierCall extends ExtensionFunctionCall
     {
 
-        public SequenceIterator call( SequenceIterator[] arguments, XPathContext context )
+        public Sequence call(XPathContext context , Sequence[] arguments )
                 throws XPathException
         {
-            Transformer t = ( Transformer )context.getController();
-            // logger.debug( "getting session id " + t.getParameter( "_uuid_" ) );
 
-            String sessionId = t.getParameter( "_uuid_" ).toString();
-            // logger.debug( "UUID is " + sessionId );
-            Session session = org.probatron.Runtime.getSession( sessionId );
+            Session session = Session.sessionFromContext( context );
             String s = session.getValidationContext().getDtdPublicId();
 
-            return SingletonIterator.makeIterator( new StringValue( s ) );
+            return new StringValue( s );
         }
 
     }
